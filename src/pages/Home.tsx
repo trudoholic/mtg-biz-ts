@@ -47,6 +47,12 @@ class Home extends Component {
     }
   };
 
+  shortName(fullName: string) {
+    const [surname, name] = fullName.split(" ");
+    const abb = name? ` ${name.slice(0, 1)}.`: "";
+    return surname + abb;
+  }
+
   render() {
     const {
       lang,
@@ -71,7 +77,7 @@ class Home extends Component {
               .slice(start * pageSize, (start + 1) * pageSize)
               .map((it: IData, index) => (
                 <li key={index}>
-                  {it.date} <b>{it.name}</b> {it.review}
+                  {it.date} <b>{this.shortName(it.name)}</b> {it.review}
                 </li>
               ))
           }
